@@ -16,3 +16,10 @@ For a production check, run `npm run build`.
 - Animated editorial hero, category cards, product grid, sale timer, testimonial carousel, and service proof points
 - Interactive cart count and newsletter email validation
 - Semantic landmarks, image alt text, keyboard-accessible controls, and visible focus states
+
+## Shopping cart
+
+- Add any product to the cart; duplicates increase its quantity and show a success toast.
+- Open the animated shopping bag drawer from the navigation to adjust quantities, remove products, inspect subtotal, or continue shopping.
+- Cart items and quantities persist in Local Storage between page refreshes.
+- The checkout action is intentionally presentation-only.
