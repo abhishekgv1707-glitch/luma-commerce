@@ -10,7 +10,7 @@ type CartContextValue = {
   subtotal: number;
   isOpen: boolean;
   toast: string | null;
-  addItem: (product: CartProduct) => void;
+  addItem: (product: CartProduct, quantity?: number) => void;
   removeItem: (name: string) => void;
   updateQuantity: (name: string, quantity: number) => void;
   openCart: () => void;
@@ -38,12 +38,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return () => window.clearTimeout(timer);
   }, [toast]);
 
-  const addItem = useCallback((product: CartProduct) => {
+  const addItem = useCallback((product: CartProduct, quantity = 1) => {
     setItems((current) => {
       const existing = current.find((item) => item.name === product.name);
       return existing
-        ? current.map((item) => item.name === product.name ? { ...item, quantity: item.quantity + 1 } : item)
-        : [...current, { ...product, quantity: 1 }];
+        ? current.map((item) => item.name === product.name ? { ...item, quantity: item.quantity + quantity } : item)
+        : [...current, { ...product, quantity }];
     });
     setToast(`${product.name} added to your bag`);
   }, []);
